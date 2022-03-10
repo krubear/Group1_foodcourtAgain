@@ -2,8 +2,11 @@ const express = require('express')
 const server = express()
 server.use(express.json()) // request json body
 
-// register our own little custome middleware
+// import routers 
+server.use("/customers", require('./routes/customersREST'))
 
+
+// register our own little custome middleware
 server.use((request, response, next)=>{
     response.setHeader('X-Created-by', 'Group1')
     next()
@@ -18,11 +21,9 @@ server.use(session({
   cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE!!!! preferable using an environmental variable
 }))
 
-
-
 // Start server
 server.listen(3000, ()=>{
-    console.log('Server running at http://localhost:3000/data')
+    console.log('Server running at http://localhost:3000/')
 })
 
 const Database = require('sqlite-async')
