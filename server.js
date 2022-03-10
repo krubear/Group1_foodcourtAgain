@@ -2,17 +2,13 @@ const express = require('express')
 const server = express()
 server.use(express.json()) // request json body
 
-/*
-//import routers
-const resturantsRoute = require("./routes/resturantsREST")//import router file
-server.use("/resturants", resturantsRoute)
-*/
+// import routers 
+server.use("/restaurants", require('./routes/resturantsREST'))
 
 // register our own little custome middleware
-
-server.use((request, response, next) => {
+server.use((request, response, next)=>{
   response.setHeader('X-Created-by', 'Group1')
-  next()
+  next()    
 })
 
 // register session middleware
@@ -25,10 +21,9 @@ server.use(session({
 }))
 
 
-
 // Start server
 server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000/grupp1_OOP2')
+  console.log('Server running at http://localhost:3000/')  
 })
 
 const Database = require('sqlite-async')
@@ -51,5 +46,3 @@ function getHash(password) { // utility
   let hash = crypto.pbkdf2Sync(password, salt, 1000, 64, `sha512`).toString(`hex`)
   return hash
 }
-
-
