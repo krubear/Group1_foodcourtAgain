@@ -2,6 +2,10 @@ const express = require('express')
 const server = express()
 server.use(express.json()) // request json body
 
+
+//import routers
+server.use("/menu_items", require('./routes/menu_items_REST')) // rout defineras in menu_items_REST
+
 // register our own little custome middleware
 
 server.use((request, response, next)=>{
@@ -22,7 +26,7 @@ server.use(session({
 
 // Start server
 server.listen(3000, ()=>{
-    console.log('Server running at http://localhost:3000/data')
+    console.log('Server running at http://localhost:3000/')
 })
 
 const Database = require('sqlite-async')
