@@ -26,5 +26,3 @@ server.delete('/data/customers/:customer_id', async(request, response)=>{
     let result = await db.run("DELETE FROM customers WHERE customer_id = ?", [request.params.customer_id])
     response.json(result)
 })
-
-module.exports = {  }
