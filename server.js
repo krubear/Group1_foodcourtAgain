@@ -4,6 +4,10 @@ server.use(express.json()) // request json body
 
 // import routers 
 server.use("/customers", require('./routes/customersREST'))
+server.use("/users", require('./routes/usersREST'))
+server.use("/orders", require('./routes/ordersREST'))
+server.use("/menu_items", require('./routes/menu_items_REST'))
+server.use("/restaurants", require('./routes/resturantsREST'))
 
 
 // register our own little custome middleware
