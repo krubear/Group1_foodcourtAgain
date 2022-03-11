@@ -10,10 +10,10 @@ server.use("/menu_items", require('./routes/menu_items_REST'))
 server.use("/restaurants", require('./routes/restaurantsREST'))
 
 
-// register our own little custom middleware
-server.use((request, response, next) => {
-  response.setHeader('X-Created-by', 'Group1')
-  next()
+// register our own little custome middleware
+server.use((request, response, next)=>{
+    response.setHeader('X-Created-by', 'Group1')
+    next()
 })
 
 // register session middleware
@@ -25,10 +25,9 @@ server.use(session({
   cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE!!!! preferable using an environmental variable
 }))
 
-
 // Start server
-server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000/')
+server.listen(3000, ()=>{
+    console.log('Server running at http://localhost:3000/')
 })
 
 const Database = require('sqlite-async')
