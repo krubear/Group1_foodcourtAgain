@@ -26,7 +26,7 @@ server.use(session({
 
 // Start server
 server.listen(3000, ()=>{
-    console.log('Server running at http://localhost:3000/')
+    console.log('Server running at http://localhost:3000/menu_items')
 })
 
 const Database = require('sqlite-async')
