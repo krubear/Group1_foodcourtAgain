@@ -3,14 +3,17 @@ const server = express()
 server.use(express.json()) // request json body
 
 // import routers 
-server.use("/restaurants", require('./routes/resturantsREST'))
+server.use("/customers", require('./routes/customersREST'))
+server.use("/users", require('./routes/usersREST'))
+server.use("/orders", require('./routes/ordersREST'))
+server.use("/menu_items", require('./routes/menu_items_REST'))
+server.use("/restaurants", require('./routes/restaurantsREST'))
 
 
-
-// register our own little custome middleware
-server.use((request, response, next)=>{
+// register our own little custom middleware
+server.use((request, response, next) => {
   response.setHeader('X-Created-by', 'Group1')
-  next()    
+  next()
 })
 
 // register session middleware
@@ -25,7 +28,7 @@ server.use(session({
 
 // Start server
 server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000/')  
+  console.log('Server running at http://localhost:3000/')
 })
 
 const Database = require('sqlite-async')
