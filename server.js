@@ -1,43 +1,49 @@
 const express = require('express')
 const server = express()
-server.use(express.json()) // request json body
+server.use( express.json() ) // request json body
 
-// register our own little custome middleware
-
+// register our own little custom middleware
 server.use((request, response, next)=>{
-    response.setHeader('X-Created-by', 'Group1')
+    response.setHeader('X-topdog', 'Emma')
     next()
 })
 
 // register session middleware
 const session = require('express-session')
+const req = require('express/lib/request')
 server.use(session({
-  secret: '12093h0pih23r0iholpedwrioj',
+  secret: 'bngszfui5btgxdpiifhtpkugiykåökm',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE!!!! preferable using an environmental variable
+  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE, preferable using an environmental variable
 }))
 
+// register routes callback function
+const registerRoutes = require('./REST-API/register-routes.js')
 
-
-// Start server
-server.listen(3000, ()=>{
-    console.log('Server running at http://localhost:3000/data')
-})
+// database
+// Note! the npm sqlite-async module is a wrapper for sqlite3 that provides promises (for async/await) for the sqlite3 module
+// https://www.npmjs.com/package/sqlite-async
 
 const Database = require('sqlite-async')
-let db 
+let db
 Database.open('./database/foodcourt.db')
-.then(d=>{
+.then(d => { // asynkron callback
+    // database connection alive
     db = d
-    console.log(db)
+    // register routes
+    registerRoutes(server, db, 'whateverOtherDependency') // registerar routes synkront
+    // start server
+    server.listen(3000, ()=>{ // startar servern asynkront
+        console.log('server running at http://localhost:3000/data')
+    })
 })
-.catch(err=>{
+.catch(err => {
     console.error(err)
 })
 
-// Crypto
 
+// Crypto
 const crypto = require("crypto")
 const salt = "paraplane".toString('hex')
 function getHash(password){ // utility

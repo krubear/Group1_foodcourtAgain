@@ -1,5 +1,24 @@
 {
+  "name": "group1_foodcourtagain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krubear/Group1_foodcourtAgain.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krubear/Group1_foodcourtAgain/issues"
+  },
+  "homepage": "https://github.com/krubear/Group1_foodcourtAgain#readme",
   "dependencies": {
+    "express": "^4.17.3",
     "express-session": "^1.17.2",
     "nodemon": "^2.0.15",
     "sqlite-async": "^1.1.3"
