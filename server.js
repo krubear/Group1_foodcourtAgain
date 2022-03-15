@@ -19,8 +19,8 @@ server.use(session({
 }))
 
 // Check role based access
-const accessControl = require('./access-control.js')
-server.use(accessControl)
+// const accessControl = require('./access-control.js')
+// server.use(accessControl)
 
 
 // register routes callback function
