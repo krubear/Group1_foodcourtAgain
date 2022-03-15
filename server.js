@@ -24,7 +24,7 @@ server.use(accessControl)
 
 
 // register routes callback function
-const registerRoutes = require('./routes/register-routes.js')
+const registerRoutes = require('./REST-API/register-routes.js')
 
 const Database = require('sqlite-async')
 let db
