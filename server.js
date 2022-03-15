@@ -1,21 +1,21 @@
 const express = require('express')
 const server = express()
-server.use(express.json()) // request json body
+server.use( express.json() ) // request json body
 
-
-// register our own little custome middleware
+// register our own little custom middleware
 server.use((request, response, next)=>{
-    response.setHeader('X-Created-by', 'Group1')
+    response.setHeader('X-topdog', 'Emma')
     next()
 })
 
 // register session middleware
 const session = require('express-session')
+const req = require('express/lib/request')
 server.use(session({
-  secret: '12093h0pih23r0iholpedwrioj',
+  secret: 'bngszfui5btgxdpiifhtpkugiykåökm',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE!!!! preferable using an environmental variable
+  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE, preferable using an environmental variable
 }))
 
 // Check role based access
@@ -27,7 +27,7 @@ server.use(accessControl)
 const registerRoutes = require('./routes/register-routes.js')
 
 const Database = require('sqlite-async')
-let db 
+let db
 Database.open('./database/foodcourt.db')
 .then(d=>{ // asynkron callback
     // database connection alive
@@ -40,8 +40,8 @@ Database.open('./database/foodcourt.db')
 })
 
 })
-.catch(err=>{
+.catch(err => {
     console.error(err)
-})
+  })
 
 
