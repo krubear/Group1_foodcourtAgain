@@ -1,6 +1,5 @@
-const httpPath = '/data/menu_items'
-
 module.exports = function (server, db) {
+  const httpPath = '/data/menu_items'
 
   //get menu_items 
 
