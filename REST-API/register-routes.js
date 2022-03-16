@@ -1,4 +1,4 @@
-git add const authentication = require("./authentication")
+const authentication = require("./authentication")
 const customersREST = require("./customersREST")
 const customRoutes = require('./custom-routes')
 const usersREST = require("./usersREST")
