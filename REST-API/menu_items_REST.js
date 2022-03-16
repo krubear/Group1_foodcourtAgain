@@ -12,7 +12,7 @@ module.exports = function (server, db) {
   })
 
   // get menu_items with specific id
-  server.get(httpPath + ':menu_item_id', async (request, response) => {
+  server.get(httpPath + '/:menu_item_id', async (request, response) => {
     let result = await db.all("SELECT * FROM menu_items WHERE menu_item_id =?", [request.params.menu_item_id])
     response.json(result)
 
@@ -48,7 +48,7 @@ module.exports = function (server, db) {
 
 
   //put menu_items, update
-  server.put(httpPath + ':menu_item_id', async (request, response) => {
+  server.put(httpPath + ':/menu_item_id', async (request, response) => {
     if (request.body.price < 0) {
 
       response.status(418).json({
@@ -69,7 +69,7 @@ module.exports = function (server, db) {
   })
 
 
-  server.delete(httpPath + ':menu_item_id', async (request, response) => {
+  server.delete(httpPath + ':/menu_item_id', async (request, response) => {
 
 
     let result = await db.run("DELETE FROM menu_items WHERE menu_item_id =?", [request.params.menu_item_id])
