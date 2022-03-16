@@ -31,5 +31,5 @@ module.exports = function(server, db){
         let result = await db.run("DELETE FROM menus WHERE menu_item_id = ?", [request.params.menu_item_id])
         return response.json(result)
       })
-
+      
 }
