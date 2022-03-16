@@ -39,7 +39,7 @@ module.exports = function (server, db) {
       })
       response.json({
         result,
-        message: "Menuitem updated"
+        message: "Menuitem added"
       })
 
     }
@@ -62,7 +62,7 @@ module.exports = function (server, db) {
 
       response.json({
         result,
-        message: "Menuitem added"
+        message: "Menuitem updated"
       })
 
     }
