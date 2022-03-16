@@ -4,8 +4,7 @@ const customRoutes = require('./custom-routes')
 const loginREST = require('./loginREST')
 const menus = require('./menusREST')
 const menuitemsREST = require('./menu_items_REST')
-const menuitemsREST = require ("./menu_items_REST")
-const menus = require('./menusREST')
+
 
 module.exports = function(server, db){
 
