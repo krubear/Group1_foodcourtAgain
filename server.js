@@ -26,6 +26,8 @@ server.use(session({
 // register routes callback function
 const registerRoutes = require('./REST-API/register-routes.js')
 
+
+
 const Database = require('sqlite-async')
 let db
 Database.open('./database/foodcourt.db')
