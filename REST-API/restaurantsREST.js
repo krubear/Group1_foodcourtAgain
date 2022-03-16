@@ -1,21 +1,6 @@
 module.exports = function (server, db) {
   const pathWay = '/data/restaurants'
 
-  /*
-  const server = require('express').Router()
-  const Database = require('sqlite-async')
-  let db
-  Database.open('./database/foodcourt.db')
-    .then(d => {
-      db = d
-      console.log(db)
-    })
-    .catch(err => {
-      console.error(err)
-    })
-  */
-
-
   //hitta en restaurang som finns i restaurants
   server.get(pathWay + '/:restaurant_id', async (request, response) => {
     let result = await db.all("SELECT * FROM restaurants WHERE restaurant_id = ?", [request.params.restaurant_id])
