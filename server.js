@@ -1,52 +1,47 @@
 const express = require('express')
 const server = express()
-server.use(express.json()) // request json body
+server.use( express.json() ) // request json body
 
-// import routers 
-server.use("/customers", require('./routes/customersREST'))
-server.use("/users", require('./routes/usersREST'))
-server.use("/orders", require('./routes/ordersREST'))
-server.use("/menu_items", require('./routes/menu_items_REST'))
-server.use("/restaurants", require('./routes/restaurantsREST'))
-
-
-// register our own little custome middleware
+// register our own little custom middleware
 server.use((request, response, next)=>{
-    response.setHeader('X-Created-by', 'Group1')
+    response.setHeader('X-topdog', 'Emma')
     next()
 })
 
 // register session middleware
 const session = require('express-session')
+const req = require('express/lib/request')
 server.use(session({
-  secret: '12093h0pih23r0iholpedwrioj',
+  secret: 'bngszfui5btgxdpiifhtpkugiykåökm',
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE!!!! preferable using an environmental variable
+  cookie: { secure: false } // CHANGE TO true WHEN GOING LIVE, preferable using an environmental variable
 }))
 
-// Start server
-server.listen(3000, ()=>{
-    console.log('Server running at http://localhost:3000/')
-})
+// Check role based access
+// const accessControl = require('./access-control.js')
+// server.use(accessControl)
+
+
+// register routes callback function
+const registerRoutes = require('./REST-API/register-routes.js')
 
 const Database = require('sqlite-async')
 let db
 Database.open('./database/foodcourt.db')
-  .then(d => {
+.then(d=>{ // asynkron callback
+    // database connection alive
     db = d
-    console.log(db)
-  })
-  .catch(err => {
+    //register routes 
+    registerRoutes(server, db) // registrerar routes synkront
+    // Start server
+    server.listen(3000, ()=>{ // startar servern asynkront
+    console.log('Server running at http://localhost:3000/data')
+})
+
+})
+.catch(err => {
     console.error(err)
   })
 
-// Crypto
 
-const crypto = require("crypto")
-const { ServerResponse } = require('http')
-const salt = "paraplane".toString('hex')
-function getHash(password) { // utility
-  let hash = crypto.pbkdf2Sync(password, salt, 1000, 64, `sha512`).toString(`hex`)
-  return hash
-}
