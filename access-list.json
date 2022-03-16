@@ -1,0 +1,58 @@
+[
+    {
+        "route": "/data/user",
+        "methods": ["POST"],
+        "roles": ["anonymous"],
+        "description": "A user can create their resource (an account)"
+    },
+    {
+        "route": "/data/user",
+        "methods": ["GET", "PUT"],
+        "roles": ["user"],
+        "description": "A user can read and update their resource"
+    },
+    {
+        "route": "/data/login",
+        "methods": ["POST"],
+        "roles": ["anonymous"],
+        "description": "An anonymous user may attempt to login (authentication object)"
+    },
+    {
+        "route": "/data/login",
+        "methods": ["DELETE"],
+        "roles": ["anonymous"],
+        "description": "A user can log out (authentication object)"
+    },
+    {
+        "route": "/data/login",
+        "methods": ["GET"],
+        "roles": ["*"],
+        "description": "Anyone can check their login (authentication object)"
+    },
+    {
+        "route": "/data/menu",
+        "methods": ["GET"],
+        "roles": ["*"],
+        "description": "Anyone may see the menu"
+    },
+    {
+        "route": "/data/menu",
+        "methods": ["POST", "PUT", "DELETE"],
+        "roles": ["manager"],
+        "description": "A manager may handle the menu"
+    },
+    {
+        "route": "/data/menuitems",
+        "methods": ["GET"],
+        "roles": ["*"],
+        "description": "Anyone may see the menuitems (dev note: we could skip this part altogether)"
+    },
+    {
+        "route": "/data/menuitems",
+        "methods": ["POST", "PUT", "DELETE"],
+        "roles": ["manager"],
+        "description": "A manager may handle the menu"
+    }
+
+
+]
